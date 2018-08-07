@@ -1,0 +1,5 @@
+/home/jli/self_play/memory-augmented-self-play-master/SelfPlay/log_42.txt
+Not enough data to plot anything for key = average_batch_loss, agent = alice, env = mountaincar
+Not enough data to plot anything for key = average_episodic_reward, agent = alice, env = mountaincar
+Not enough data to plot anything for key = current_episodic_reward, agent = alice, env = mountaincar
+Not enough data to plot anything for key = time, agent = alice, env = mountaincar
