@@ -36,9 +36,9 @@ c)	用lstm来学习出memory vector
 
 ### 3.	实验
 
-a)	文中指出mountain car效果不好，本文不考虑用这个试验（found no success as the agent hardly learns anything）
+a) 文中指出mountain car效果不好，本文不考虑用这个试验（found no success as the agent hardly learns anything）
 
-b)	本文中设置的试验episode数
+b) 本文中设置的试验episode数
 
 |               | Mazebase        | car       | acrobot  |
 | -------------|:--------------: |:-------------:| -----:|
@@ -47,4 +47,4 @@ b)	本文中设置的试验episode数
 |Batch size | 256     |    1 | 1|
 
 
-c)	Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm with baseline to train the agents
+c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm with baseline to train the agents
