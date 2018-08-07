@@ -1,6 +1,6 @@
 from environment.acrobot import Acrobot
 from environment.cartpole import CartPole
-from environment.mazebase_wrapper import MazebaseWrapper
+#from environment.mazebase_wrapper import MazebaseWrapper
 from environment.mountain_car import MountainCar
 from environment.selfplay import SelfPlay
 from environment.selfplay_memory import SelfPlayMemory
