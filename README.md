@@ -60,7 +60,7 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 | util | 设置随机数的seed| 略|
 |optim_registry | 根据config，确定optimizer用什么 | 略|
 |log | 生成log文件| 略（这个没细看）|
-|**constant| 常量变量的含义| 如果遇到全部大写字母的变量，可能能在这个代码中找到定义**|
+|**constant**| 常量变量的含义| 如果遇到全部大写字母的变量，可能能在这个代码中找到定义|
 |config.py|读取config，以及有些key是空值的话，赋予合适的值|base_path默认memory-augmented-self-play-master，模型保存路径[MODEL][SAVE_DIR]默认为memory-augmented-self-play-master/model，TB Params不知道是啥，如果log的key是空则将日志存在"log_42.txt"中|
 |argument_parser| 辅助性代码，帮助读入config的| 略|
 
@@ -71,21 +71,32 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 | filter_json_lines |Preprocess the log file by filtering non-json line 预处理日志文件| 略（没细看）|
 
 
+### （3）policy
+|       py文件        | 目的       | 注 |
+| -------------|:--------------: |:---------:|
+| base_policy | 指定policy中网络框架，参数  | 一些主要的参数整理见（3.1）|
 
 
-### (1)selfplay.py
+
+（3.1） base_policy.py
++ 策略更新频率：update_frequency = int(policy_config[BATCH_SIZE]) = 32，可见policy_config.py
++ shared_features_size = policy_config[SHARED_FEATURES_SIZE]， 在policy文件夹中的acrobot_policyp.py里赋值是128
++ memory模块：记忆的维度episode_memory_size= config[EPISODE_MEMORY_SIZE]， input_dim=self.shared_features_size，output_dim=self.shared_features_size
++ **特征提取网络（a feature extraction network，单层的前馈神经网络）：如果self_play设为True,input_size变为原先的2倍，即对于Alice的特征提取网络输入的是(current_state, start_state)，Bob的特征提取网络输入的是(current_state, target_state)**
++ actor、critic每一层网络的初始化：用均匀分布来初始化
++ reward：目前的reward只考虑的是agent的observation本身带来的奖励，即observation[0].reward
++ **改进的alice中critic、actor的输入是feature+memory：In case of Alice, these features are concatenated with the features coming from the memory and the concatenated features are fed into the actor and the critic networks.** 对应的代码部分是
+```shared_features = torch.cat((F.relu(self.shared_features(data)),                          self.summarize_memory().unsqueeze(0).detach()), dim=1)```
++ update函数待看
+
+
+
+
+
+### (4)selfplay.py
 代码框架见self play论文
 
 而augmented memory中用到的alice历史信息的定义，如下：
 
 ```alice_history = np.concatenate((selfplay.alice_observations.start.state.reshape(1, -1),                                      selfplay.alice_observations.end.state.reshape(1, -1)), axis=1)```
 
-
-### (3) agent 
-
-|       py文件        | 目的       | 注 |
-| -------------|:--------------: |:---------:|
-|base_agent.py |定义了agent的基类BaseAgent| 指明了agent应该具备的方法接口包括get_action、get_random_action、get_optimisers、update_policy、set_initial_state|
-|human_agent.py|重载了基类BaseAgent中get_action方法|意在让用户手动输入一个action达到与用户之间的交互(在训练中用不得到)|
-|random_agent.py|重载了基类BaseAgent中get_action方法|随机选取一个action空间中的action|
-|reinforce_agent.py|重载了基类BaseAgent中的各种方法|主要是调用policy文件夹中的policy以选取action，并且调用policy文件夹中的函数更新policy(重要的功能还要参见policy文件夹)|
