@@ -71,29 +71,9 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 | filter_json_lines |Preprocess the log file by filtering non-json line 预处理日志文件| 略（没细看）|
 
 
-### （3）policy
-|       py文件        | 目的       | 注 |
-| -------------|:--------------: |:---------:|
-| base_policy | 指定policy中网络框架，参数  | 一些主要的参数整理见（3.1）|
 
 
-
-（3.1） base_policy.py
-+ 策略更新频率：update_frequency = int(policy_config[BATCH_SIZE]) = 32，可见policy_config.py
-+ shared_features_size = policy_config[SHARED_FEATURES_SIZE]， 没看见这个参数的赋值，在论文中可见赋值
-+ memory模块：记忆的维度episode_memory_size= config[EPISODE_MEMORY_SIZE]， input_dim=self.shared_features_size，output_dim=self.shared_features_size
-+ **特征提取网络（a feature extraction network，单层的前馈神经网络）：如果self_play设为True,input_size变为原先的2倍，即对于Alice的特征提取网络输入的是(current_state, start_state)，Bob的特征提取网络输入的是(current_state, target_state)**
-+ actor、critic每一层网络的初始化：用均匀分布来初始化
-+ reward：目前的reward只考虑的是agent的observation本身带来的奖励，即observation[0].reward
-+ **改进的alice中critic、actor的输入是feature+memory：In case of Alice, these features are concatenated with the features coming from the memory and the concatenated features are fed into the actor and the critic networks.** 对应的代码部分是
-```shared_features = torch.cat((F.relu(self.shared_features(data)),                          self.summarize_memory().unsqueeze(0).detach()), dim=1)```
-
-
-
-
-
-
-### (4)selfplay.py
+### (1)selfplay.py
 代码框架见self play论文
 
 而augmented memory中用到的alice历史信息的定义，如下：
@@ -104,7 +84,7 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 ###(3) agent 
 |       py文件        | 目的       | 注 |
 | -------------|:--------------: |:---------:|
-| base_agent.py | 定义了agent的基类BaseAgent| 指明了agent应该具备的方法接口包括get_action、get_random_action、get_optimisers、update_policy、set_initial_state|
+|base_agent.py |定义了agent的基类BaseAgent| 指明了agent应该具备的方法接口包括get_action、get_random_action、get_optimisers、update_policy、set_initial_state|
 |human_agent.py|重载了基类BaseAgent中get_action方法|意在让用户手动输入一个action达到与用户之间的交互(在训练中用不得到)|
 |random_agent.py|重载了基类BaseAgent中get_action方法|随机选取一个action空间中的action|
 |reinforce_agent.py|重载了基类BaseAgent中的各种方法|主要是调用policy文件夹中的policy以选取action，并且调用policy文件夹中的函数更新policy(重要的功能还要参见policy文件夹)|
