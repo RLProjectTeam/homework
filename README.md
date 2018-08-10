@@ -79,7 +79,7 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 |registry| 由config确定了哪个游戏，从而确定用文件夹中哪个policy| 略|
 
 
-（3.1） base_policy.py
+（3.1）**base_policy.py**
 + 策略更新频率：update_frequency = int(policy_config[BATCH_SIZE]) = 32，可见policy_config.py
 + shared_features_size = policy_config[SHARED_FEATURES_SIZE]， 在policy文件夹中的acrobot_policyp.py里赋值是128
 + memory模块：记忆的维度episode_memory_size= config[EPISODE_MEMORY_SIZE]， input_dim=self.shared_features_size，output_dim=self.shared_features_size
@@ -91,10 +91,19 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 + update函数待看
 
 
+### （4）plotter file
+根据log文件画出alice、bob在每个指标（key）下的曲线图，保存的路径由config[plot][base_path]指定
+
+## （5）model file
+|       py文件        | 目的       | 注 |
+| -------------|:--------------: |:---------:|
+| base_model | 保存模型、导入模型  | 略|
 
 
 
-### (4)selfplay.py
+
+
+### (5)selfplay.py
 代码框架见self play论文
 
 而augmented memory中用到的alice历史信息的定义，如下：
