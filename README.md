@@ -82,6 +82,7 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 
 
 ###(3) agent 
+
 |       py文件        | 目的       | 注 |
 | -------------|:--------------: |:---------:|
 |base_agent.py |定义了agent的基类BaseAgent| 指明了agent应该具备的方法接口包括get_action、get_random_action、get_optimisers、update_policy、set_initial_state|
