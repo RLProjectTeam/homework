@@ -80,3 +80,11 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 
 ```alice_history = np.concatenate((selfplay.alice_observations.start.state.reshape(1, -1),                                      selfplay.alice_observations.end.state.reshape(1, -1)), axis=1)```
 
+
+###(3) agent 
+|       py文件        | 目的       | 注 |
+| -------------|:--------------: |:---------:|
+| base_agent.py | 定义了agent的基类BaseAgent| 指明了agent应该具备的方法接口包括get_action、get_random_action、get_optimisers、update_policy、set_initial_state|
+|human_agent.py|重载了基类BaseAgent中get_action方法|意在让用户手动输入一个action达到与用户之间的交互(在训练中用不得到)|
+|random_agent.py|重载了基类BaseAgent中get_action方法|随机选取一个action空间中的action|
+|reinforce_agent.py|重载了基类BaseAgent中的各种方法|主要是调用policy文件夹中的policy以选取action，并且调用policy文件夹中的函数更新policy(重要的功能还要参见policy文件夹)|
