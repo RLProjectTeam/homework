@@ -81,7 +81,7 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 ```alice_history = np.concatenate((selfplay.alice_observations.start.state.reshape(1, -1),                                      selfplay.alice_observations.end.state.reshape(1, -1)), axis=1)```
 
 
-###(3) agent 
+### (3) agent 
 
 |       py文件        | 目的       | 注 |
 | -------------|:--------------: |:---------:|
