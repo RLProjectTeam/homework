@@ -51,7 +51,7 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 
 
 ## 二、 reading code(in file: SelfPlay)
-### utils (file)
+### （1）utils (file)
 
 “注”中的略表示也许可以不用详看此代码，不是我们之后改思路的重点
 
