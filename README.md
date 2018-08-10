@@ -13,7 +13,7 @@ c)	acrobat（机器臂）
 
 ### 2.	模型【重点的思路部分】
 
-（1）	feature extraction network（单层前馈神经网络+relu）
+**（1）	feature extraction network（单层前馈神经网络+relu）**
 
 输入:
       （Alice在这个episode的当前状态，Alice在这个episode的起始状态），称为current episodic tuple；
@@ -25,7 +25,7 @@ c)	acrobat（机器臂）
 
 对于augmented self play，这个地方的输入就是(Alice的tuple同上，Alice memory vector)
 
-（2）	memory model
+**（2）	memory model**
 
 a)	把last episodic tuple作为memory vector
 
@@ -75,7 +75,8 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 |       py文件        | 目的       | 注 |
 | -------------|:--------------: |:---------:|
 | base_policy | 指定policy中网络框架，参数  | 一些主要的参数整理见（3.1）|
-
+| polic_config| 设置基本参数 | 略|
+|registry| 由config确定了哪个游戏，从而确定用文件夹中哪个policy| 略|
 
 
 （3.1） base_policy.py
