@@ -94,12 +94,12 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 ### （4）plotter file
 根据log文件画出alice、bob在每个指标（key）下的曲线图，保存的路径由config[plot][base_path]指定
 
-## （5）model file
+### （5）model file
 |       py文件        | 目的       | 注 |
 | -------------|:--------------: |:---------:|
 | base_model | 保存模型、导入模型  | 略|
 
-
+### （6）memory file（是那篇论文中创新之处）
 
 
 
