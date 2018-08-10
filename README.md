@@ -55,5 +55,6 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 代码框架见self play论文
 
 而augmented memory中用到的alice历史信息的定义，如下：
+
 ```alice_history = np.concatenate((selfplay.alice_observations.start.state.reshape(1, -1),                                      selfplay.alice_observations.end.state.reshape(1, -1)), axis=1)```
 
