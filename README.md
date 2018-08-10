@@ -50,7 +50,22 @@ b) 本文中设置的试验episode数
 c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm with baseline to train the agents
 
 
-## 二、 reading code
+## 二、 reading code(in file: SelfPlay)
+### utils (file)
+
+“注”中的略表示也许可以不用详看此代码，不是我们之后改思路的重点
+
+|       py文件        | 目的       | 注 |
+| -------------|:--------------: |:---------:|
+| util | 设置随机数的seed| 略|
+|optim_registry | 根据config，确定optimizer用什么 | 略|
+|log | 生成log文件| 略（这个没细看）|
+|`constant`| 常量变量的含义| 如果遇到全部大写字母的变量，可能能在这个代码中找到定义|
+
+
+
+
+
 ### (1)selfplay.py
 代码框架见self play论文
 
