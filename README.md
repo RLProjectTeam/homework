@@ -71,9 +71,21 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 | filter_json_lines |Preprocess the log file by filtering non-json line 预处理日志文件| 略（没细看）|
 
 
+### （3）policy
+|       py文件        | 目的       | 注 |
+| -------------|:--------------: |:---------:|
+| base_policy | 指定policy中网络框架，参数  | 一些稍微主要的参数整理如下
++ 策略更新频率update_frequency = int(policy_config[BATCH_SIZE]) = 32，可见policy_config.py
++ shared_features_size = policy_config[SHARED_FEATURES_SIZE]， 没看见这个参数的赋值，在论文中可见赋值
++ memory模块：记忆的维度episode_memory_size= config[EPISODE_MEMORY_SIZE]， input_dim=self.shared_features_size，output_dim=self.shared_features_size
++ 特征提取网络（a feature extraction network，单层的前馈神经网络）：如果self_play设为True,input_size变为原先的2倍，即输入的是concatenated tuple of the current state in the current episode and the start state in the current episode (for Alice) or current state in the current
+episode and target state in the current episode (for Bob)，输出的是特征向量
 
 
-### (1)selfplay.py
+
+
+
+### (4)selfplay.py
 代码框架见self play论文
 
 而augmented memory中用到的alice历史信息的定义，如下：
