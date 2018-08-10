@@ -50,7 +50,7 @@ b) 本文中设置的试验episode数
 c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm with baseline to train the agents
 
 
-## 二 reading code
+## 二、 reading code
 ### (1)selfplay.py
 代码框架见self play论文
 
