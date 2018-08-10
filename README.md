@@ -61,6 +61,7 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 |optim_registry | 根据config，确定optimizer用什么 | 略|
 |log | 生成log文件| 略（这个没细看）|
 |<font color=red>constant</font>| 常量变量的含义| 如果遇到全部大写字母的变量，可能能在这个代码中找到定义|
+|config.py|读取config，以及有些key是空值的话，赋予合适的值|base_path默认memory-augmented-self-play-master，模型保存路径[MODEL][SAVE_DIR]默认为memory-augmented-self-play-master/model，<font color=red>TB Params不知道是啥</font>，如果log的key是空则将日志存在"log_{}.txt".format(str(config[GENERAL][SEED])中|
 
 
 
