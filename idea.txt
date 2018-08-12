@@ -1,0 +1,8 @@
+1. memory的模块: (1) 把最近的k个作为lstm的输入
+                (2) 将memory改成多层级的 将trajecoty输入到lstm中 得到当前回合的history
+                        (a) 使用单向的lstm
+                        (b) 使用双向的lstm
+                (3) 将lstm改为其他网络结构(GRU)
+                (4) memory中融入没一个回合Bob完成的情况的信息(例如Bob的Reward)
+                (5) memory只记录Bob最差的k个history 或者 memory只记录Bob能完成的最差的k个hisory
+      
