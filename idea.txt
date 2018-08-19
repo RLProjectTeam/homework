@@ -1,7 +1,9 @@
 1. memory的模块: (0)把代码改成在gpu上运行  【已完成 Zhu】
-                （1）简单修改：引入权重 alice_history = alice_reward * history 【已完成】；
+                （1.1）简单修改：引入权重 alice_history = alice_reward * history 【已完成】；
                               只把Bob没有完成的那次history放进alice memory【已完成】
                               memory中融入每一个回合Bob完成的情况的信息(例如Bob的Reward)
+                              
+                 （1.2）预训练lstm（之前只有一层，输入向量、输出向量；目前改为两层，输入向量，隐层向量，输出reward）
                  
                  (2)新思路修改：非对称self play ---》 对称self play（加快预训练过程，更容易收敛）
                  
