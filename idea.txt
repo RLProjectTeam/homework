@@ -1,5 +1,5 @@
 1. memory的模块: (0)把代码改成在gpu上运行  【已完成 Zhu】
-                （1）简单修改：alice_history = alice_reward * history 【已完成】
+                （1）简单修改：引入权重 alice_history = alice_reward * history 【已完成】
 
 
 
