@@ -1,13 +1,15 @@
 1. memory的模块: (0)把代码改成在gpu上运行  【已完成 Zhu】
-                （1）简单修改：引入权重 alice_history = alice_reward * history 【已完成】；只把Bob没有完成的那次history放进alice memory【已完成】
+                （1）简单修改：引入权重 alice_history = alice_reward * history 【已完成】；
+                              只把Bob没有完成的那次history放进alice memory【已完成】
+                              
+                              memory中融入每一个回合Bob完成的情况的信息(例如Bob的Reward)
 
 
 
-                (1) 把最近的k个作为lstm的输入
+                (1) 把最近的k个作为lstm的输入【忽略，修改无意义】
                 (2) 将memory改成多层级的 将trajecoty输入到lstm中 得到当前回合的history
                         (a) 使用单向的lstm
                         (b) 使用双向的lstm
                 (3) 将lstm改为其他网络结构(GRU)
-                (4) memory中融入每一个回合Bob完成的情况的信息(例如Bob的Reward)
                 (5) memory只记录Bob最差的k个history 或者 memory只记录Bob能完成的最差的k个hisory
       
