@@ -1,4 +1,8 @@
 1. memory的模块: (0)把代码改成在gpu上运行  【已完成 Zhu】
+                （1）简单修改：alice_history = alice_reward * history 【已完成】
+
+
+
                 (1) 把最近的k个作为lstm的输入
                 (2) 将memory改成多层级的 将trajecoty输入到lstm中 得到当前回合的history
                         (a) 使用单向的lstm
