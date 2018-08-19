@@ -4,6 +4,7 @@
                               memory中融入每一个回合Bob完成的情况的信息(例如Bob的Reward)
                               
                  （1.2）预训练lstm（之前只有一层，输入向量、输出向量；目前改为两层，输入向量，隐层向量，输出reward）
+                 对memory的改法就是在self play之前，预训练memory的lstm的权重。预训练lstm（之前只有一层，输入向量、输出向量；目前改为两层，输入向量，隐层向量，输出alice的reward）
                  
                  (2)新思路修改：非对称self play ---》 对称self play（加快预训练过程，更容易收敛）
                  
