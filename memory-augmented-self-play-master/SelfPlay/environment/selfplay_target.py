@@ -1,7 +1,7 @@
 import random
 
 from environment.selfplay import SelfPlay
-#from environment.mazebase_wrapper import MazebaseWrapper
+from environment.mazebase_wrapper import MazebaseWrapper
 from environment.observation import ObservationTuple, Observation
 from utils.constant import *
 from copy import deepcopy

@@ -22,5 +22,5 @@ class MazebasePolicyReinforceWithBaseline(BasePolicyReinforceWithBaseline):
         self.shared_features = nn.Sequential(
             nn.Linear(self.input_size, self.shared_features_size),
             nn.Tanh()
-        ).cuda()
+        )
         self.init_weights()

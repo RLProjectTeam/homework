@@ -1,6 +1,5 @@
 import os
-import matplotlib
-matplotlib.use('agg')
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -43,7 +42,7 @@ def plot(logs, key, agent, dir_to_save_plots, env, window_size, *args, **kwargs)
         plt.ylabel(ylabel)
         plt.xlabel(xlabel)
         plt.title(title)
-      #  plt.show()
+        plt.show()
         if dir_to_save_plots:
             path = os.path.join(dir_to_save_plots, title)
             plt.savefig(path)

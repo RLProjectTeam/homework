@@ -1,8 +1,7 @@
 import os
 from copy import deepcopy
 from pathlib import Path
-import matplotlib
-matplotlib.use('agg')
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -108,7 +107,6 @@ def plot_aggregated(logs, key, agent, dir_to_save_plots, env, *args, **kwargs):
     }
     metric_average = new_metric[AVERAGE]
     std_average = new_metric[STDDEV]
-    print('std_average')
     if (len(metric_average) > 2):
         plt.plot(metric_average, *args, **kwargs)
         # plt.show()
@@ -132,7 +130,7 @@ def plot_aggregated(logs, key, agent, dir_to_save_plots, env, *args, **kwargs):
         plt.ylabel(ylabel)
         plt.xlabel(xlabel)
         plt.title(title)
-        # plt.show()
+        plt.show()
         if dir_to_save_plots:
             path = os.path.join(dir_to_save_plots, title)
             plt.savefig(path)
