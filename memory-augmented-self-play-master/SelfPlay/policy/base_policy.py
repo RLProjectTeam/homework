@@ -251,7 +251,7 @@ class BasePolicyReinforceWithBaseline(BasePolicy):
         self.is_self_play = policy_config[IS_SELF_PLAY]
         self.critic = nn.Sequential(
             nn.Linear(self.shared_features_size_output, 1)
-        )
+        ).cuda()
 
     def forward(self, data):
         shared_features = F.relu(self.shared_features(data))

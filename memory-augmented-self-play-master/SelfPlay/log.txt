@@ -1,0 +1,77 @@
+Writing logs to file name: /home/zhuyuanjin/homework/memory-augmented-self-play-master/SelfPlay/log_42.txt
+{"general": {"base_path": "/home/zhuyuanjin/homework/memory-augmented-self-play-master", "device": "cpu", "seed": 42, "id": "42"}, "model": {"env": "mazebase", "agent": "reinforce", "batch_size": 2, "num_epochs": 3, "learning_rate": 0.001, "learning_rate_actor": 0.001, "learning_rate_critic": 0.001, "persist_per_epoch": 1000, "early_stopping_patience": 10, "gamma": 0.1, "lambda": 0.1, "use_baseline": true, "num_optimizers": 1, "load": false, "save_dir": "/home/zhuyuanjin/homework/memory-augmented-self-play-master/model", "load_path": "/home/zhuyuanjin/homework/memory-augmented-self-play-master/model", "load_timestamp": 15233139888052, "optimiser": "adam", "max_steps_per_episode": 40, "is_self_play": true, "is_self_play_with_memory": false, "reward_scale": 0.1, "max_steps_per_episode_selfplay": 80, "target_to_selfplay_ratio": 4, "episode_memory_size": 10, "memory_type": "base_memory", "selfplay_type": "copy"}, "log": {"file_path": "/home/zhuyuanjin/homework/memory-augmented-self-play-master/SelfPlay/log_42.txt"}, "plot": {"base_path": "/home/zhuyuanjin/homework/memory-augmented-self-play-master/plot/42"}, "tb": {"base_path": "", "dir": "Aug22_20-44-02", "scalar_path": "all_scalars.json"}, "type": "config"}
+{"general": {"base_path": "/home/zhuyuanjin/homework/memory-augmented-self-play-master", "device": "cpu", "seed": 42, "id": "42"}, "model": {"env": "mazebase", "agent": "reinforce", "batch_size": 2, "num_epochs": 3, "learning_rate": 0.001, "learning_rate_actor": 0.001, "learning_rate_critic": 0.001, "persist_per_epoch": 1000, "early_stopping_patience": 10, "gamma": 0.1, "lambda": 0.1, "use_baseline": true, "num_optimizers": 1, "load": false, "save_dir": "/home/zhuyuanjin/homework/memory-augmented-self-play-master/model", "load_path": "/home/zhuyuanjin/homework/memory-augmented-self-play-master/model", "load_timestamp": 15233139888052, "optimiser": "adam", "max_steps_per_episode": 40, "is_self_play": true, "is_self_play_with_memory": false, "reward_scale": 0.1, "max_steps_per_episode_selfplay": 80, "target_to_selfplay_ratio": 4, "episode_memory_size": 10, "memory_type": "base_memory", "selfplay_type": "copy"}, "log": {"file_path": "/home/zhuyuanjin/homework/memory-augmented-self-play-master/SelfPlay/log_42.txt"}, "plot": {"base_path": "/home/zhuyuanjin/homework/memory-augmented-self-play-master/plot/42"}, "tb": {"base_path": "", "dir": "Aug22_20-44-02", "scalar_path": "all_scalars.json"}, "type": "config"}
+{"time_alice": 14, "agent": "alice", "environment": "selfplay_mazebase", "type": "time"}
+notsolved
+{"time_bob": 66, "agent": "bob", "environment": "selfplay_mazebase", "type": "time"}
+{"current_episodic_reward": 5.2, "average_episodic_reward": 5.2, "agent": "alice", "environment": "selfplay_mazebase", "type": "reward"}
+{"current_episodic_reward": -6.6000000000000005, "average_episodic_reward": -6.6000000000000005, "agent": "bob", "environment": "selfplay_mazebase", "type": "reward"}
+{"time_alice": 20, "agent": "alice", "environment": "selfplay_mazebase", "type": "time"}
+notsolved
+{"time_bob": 60, "agent": "bob", "environment": "selfplay_mazebase", "type": "time"}
+{"average_batch_loss": -0.4228382706642151, "agent": "alice", "environment": "selfplay_mazebase", "type": "loss"}
+{"average_batch_loss": 0.987568736076355, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": 4.0, "average_episodic_reward": 4.6, "agent": "alice", "environment": "selfplay_mazebase", "type": "reward"}
+{"current_episodic_reward": -6.0, "average_episodic_reward": -6.300000000000001, "agent": "bob", "environment": "selfplay_mazebase", "type": "reward"}
+{"current_episodic_reward": -4.000000000000002, "average_episodic_reward": -4.000000000000002, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 9.383639335632324, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -5.799999999999994, "average_episodic_reward": -4.899999999999998, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"current_episodic_reward": -4.200000000000001, "average_episodic_reward": -4.666666666666665, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 1.9603666067123413, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -6.399999999999994, "average_episodic_reward": -5.099999999999998, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"current_episodic_reward": -4.000000000000002, "average_episodic_reward": -4.879999999999998, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 0.09215041995048523, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -4.000000000000002, "average_episodic_reward": -4.733333333333332, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"current_episodic_reward": -6.199999999999994, "average_episodic_reward": -4.942857142857141, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 0.3019357919692993, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -4.200000000000001, "average_episodic_reward": -4.849999999999999, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+saved model to path = /home/zhuyuanjin/homework/memory-augmented-self-play-master/model/alice_model_timestamp_15349418491048.tar
+saved model to path = /home/zhuyuanjin/homework/memory-augmented-self-play-master/model/bob_model_timestamp_15349418491048.tar
+{"time_alice": 3, "agent": "alice", "environment": "selfplay_mazebase", "type": "time"}
+solved
+{"time_bob": 0, "agent": "bob", "environment": "selfplay_mazebase", "type": "time"}
+{"current_episodic_reward": 0.0, "average_episodic_reward": 3.0666666666666664, "agent": "alice", "environment": "selfplay_mazebase", "type": "reward"}
+{"current_episodic_reward": -0.0, "average_episodic_reward": -4.2, "agent": "bob", "environment": "selfplay_mazebase", "type": "reward"}
+{"time_alice": 8, "agent": "alice", "environment": "selfplay_mazebase", "type": "time"}
+solved
+{"time_bob": 4, "agent": "bob", "environment": "selfplay_mazebase", "type": "time"}
+{"average_batch_loss": 0.5571936368942261, "agent": "alice", "environment": "selfplay_mazebase", "type": "loss"}
+{"average_batch_loss": 0.934769332408905, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": 0.0, "average_episodic_reward": 2.3, "agent": "alice", "environment": "selfplay_mazebase", "type": "reward"}
+{"current_episodic_reward": -0.4, "average_episodic_reward": -3.2500000000000004, "agent": "bob", "environment": "selfplay_mazebase", "type": "reward"}
+{"current_episodic_reward": 0.9, "average_episodic_reward": -4.21111111111111, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 6.722560405731201, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -5.399999999999999, "average_episodic_reward": -4.329999999999999, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"current_episodic_reward": -4.000000000000002, "average_episodic_reward": -4.299999999999999, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 1.7742756605148315, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -6.599999999999998, "average_episodic_reward": -4.491666666666666, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"current_episodic_reward": -4.000000000000002, "average_episodic_reward": -4.453846153846153, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 1.8823813199996948, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -8.4, "average_episodic_reward": -4.735714285714286, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"current_episodic_reward": -6.599999999999992, "average_episodic_reward": -4.859999999999999, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": -0.30100253224372864, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -4.000000000000002, "average_episodic_reward": -4.8062499999999995, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"time_alice": 9, "agent": "alice", "environment": "selfplay_mazebase", "type": "time"}
+solved
+{"time_bob": 3, "agent": "bob", "environment": "selfplay_mazebase", "type": "time"}
+{"current_episodic_reward": 0.0, "average_episodic_reward": 1.8399999999999999, "agent": "alice", "environment": "selfplay_mazebase", "type": "reward"}
+{"current_episodic_reward": -0.30000000000000004, "average_episodic_reward": -2.6600000000000006, "agent": "bob", "environment": "selfplay_mazebase", "type": "reward"}
+{"time_alice": 3, "agent": "alice", "environment": "selfplay_mazebase", "type": "time"}
+solved
+{"time_bob": 0, "agent": "bob", "environment": "selfplay_mazebase", "type": "time"}
+{"average_batch_loss": 0.8694969415664673, "agent": "alice", "environment": "selfplay_mazebase", "type": "loss"}
+{"average_batch_loss": 0.5667199492454529, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": 0.0, "average_episodic_reward": 1.5333333333333332, "agent": "alice", "environment": "selfplay_mazebase", "type": "reward"}
+{"current_episodic_reward": -0.0, "average_episodic_reward": -2.2166666666666672, "agent": "bob", "environment": "selfplay_mazebase", "type": "reward"}
+{"current_episodic_reward": -7.199999999999997, "average_episodic_reward": -4.947058823529411, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 4.226490020751953, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -8.999999999999993, "average_episodic_reward": -5.172222222222222, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"current_episodic_reward": -4.000000000000002, "average_episodic_reward": -5.110526315789474, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 0.20333971083164215, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -4.000000000000002, "average_episodic_reward": -5.055, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"current_episodic_reward": -5.599999999999995, "average_episodic_reward": -5.080952380952381, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 2.1834216117858887, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -4.4, "average_episodic_reward": -5.05, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"current_episodic_reward": -8.799999999999994, "average_episodic_reward": -5.213043478260869, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
+{"average_batch_loss": 3.4040961265563965, "agent": "bob", "environment": "selfplay_mazebase", "type": "loss"}
+{"current_episodic_reward": -4.799999999999999, "average_episodic_reward": -5.195833333333333, "agent": "bob", "environment": "selfplay_target_mazebase", "type": "reward"}
