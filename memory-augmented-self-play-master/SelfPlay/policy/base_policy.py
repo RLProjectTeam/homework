@@ -61,15 +61,15 @@ class BasePolicy(torch.nn.Module):
         self.shared_features = nn.Sequential(
             nn.Linear(self.input_size, self.shared_features_size),
             nn.ReLU()
-        )
+        ).cuda()
 
         self.actor = nn.Sequential(
             nn.Linear(self.shared_features_size_output, self.num_actions)
-        )
+        ).cuda()
 
     def update_memory(self, history):
         # Tuple of Observations(start_state, end_state)
-        history = self.shared_features(Variable(torch.from_numpy(history)).float())
+        history = self.shared_features(Variable(torch.from_numpy(history)).float().cuda())
         self.memory.update_memory(history=history)
 
     def summarize_memory(self):
@@ -173,7 +173,7 @@ class BasePolicy(torch.nn.Module):
                                         torch.from_numpy(observation[1].state).float())).unsqueeze(0))
         else:
             S = Variable((torch.from_numpy(observation.state).float().unsqueeze(0)))
-        return S
+        return S.cuda()
 
 
 class BasePolicyReinforce(BasePolicy):
@@ -190,7 +190,7 @@ class BasePolicyReinforce(BasePolicy):
         shared_features = F.relu(self.shared_features(data))
         if(self.is_self_play and self.is_self_play_with_memory):
             shared_features = torch.cat((F.relu(self.shared_features(data)),
-                                     self.summarize_memory().unsqueeze(0).detach()), dim=1)
+                                     self.summarize_memory().unsqueeze(0).detach().cuda()), dim=1)
         action_logits = self.actor(shared_features)
         return F.softmax(action_logits, dim=1)
 
@@ -257,7 +257,7 @@ class BasePolicyReinforceWithBaseline(BasePolicy):
         shared_features = F.relu(self.shared_features(data))
         if(self.is_self_play and self.is_self_play_with_memory):
             shared_features = torch.cat((shared_features,
-                                     self.summarize_memory().unsqueeze(0).detach()), dim=1)
+                                     self.summarize_memory().unsqueeze(0).detach().cuda()), dim=1)
         action_logits = self.actor(shared_features)
         state_values = self.critic(shared_features)
         return F.softmax(action_logits, dim=1), state_values
@@ -312,7 +312,7 @@ class BasePolicyReinforceWithBaseline(BasePolicy):
         gamma_exps = torch.FloatTensor(gamma_exps)
         _returns = (_returns - _returns.mean()) / (_returns.std(unbiased=False) + np.finfo(np.float32).eps)
         for logit, state_value, _return, current_gamma_exp in zip(self.logits, self.state_values, _returns, gamma_exps):
-            state_value_loss.append(F.smooth_l1_loss(state_value, Variable(torch.Tensor([_return]))))
+            state_value_loss.append(F.smooth_l1_loss(state_value, Variable(torch.Tensor([_return])).cuda()))
             _return = _return - state_value.data[0][0]
             policy_loss.append(-logit * _return * current_gamma_exp)
 
