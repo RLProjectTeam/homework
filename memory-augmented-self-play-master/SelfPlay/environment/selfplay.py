@@ -2,7 +2,7 @@ import random
 from copy import deepcopy
 
 from environment.env import Environment
-#from environment.mazebase_wrapper import MazebaseWrapper
+from environment.mazebase_wrapper import MazebaseWrapper
 from environment.observation import ObservationTuple, Observation
 from utils.constant import *
 
