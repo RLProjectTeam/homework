@@ -69,7 +69,7 @@ class BasePolicy(torch.nn.Module):
 
     def update_memory(self, history):
         # Tuple of Observations(start_state, end_state)
-        history = self.shared_features(Variable(torch.from_numpy(history)).float())
+        history = self.shared_features(Variable(torch.from_numpy(history)).float().cuda())
         self.memory.update_memory(history=history)
 
     def summarize_memory(self):
@@ -313,7 +313,7 @@ class BasePolicyReinforceWithBaseline(BasePolicy):
         print(_returns,_returns.shape)
         _returns = (_returns - _returns.mean()) / (_returns.std(unbiased=False) + np.finfo(np.float32).eps)
         for logit, state_value, _return, current_gamma_exp in zip(self.logits, self.state_values, _returns, gamma_exps):
-            state_value_loss.append(F.smooth_l1_loss(state_value, Variable(torch.Tensor([_return]))))
+            state_value_loss.append(F.smooth_l1_loss(state_value, Variable(torch.Tensor([_return])).cuda()))
             _return = _return - state_value.data[0][0]
             policy_loss.append(-logit * _return * current_gamma_exp)
 
