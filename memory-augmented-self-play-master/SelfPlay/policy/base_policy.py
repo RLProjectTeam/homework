@@ -61,11 +61,11 @@ class BasePolicy(torch.nn.Module):
         self.shared_features = nn.Sequential(
             nn.Linear(self.input_size, self.shared_features_size),
             nn.ReLU()
-        )
+        ).cuda()
 
         self.actor = nn.Sequential(
             nn.Linear(self.shared_features_size_output, self.num_actions)
-        )
+        ).cuda()
 
     def update_memory(self, history):
         # Tuple of Observations(start_state, end_state)
@@ -173,7 +173,7 @@ class BasePolicy(torch.nn.Module):
                                         torch.from_numpy(observation[1].state).float())).unsqueeze(0))
         else:
             S = Variable((torch.from_numpy(observation.state).float().unsqueeze(0)))
-        return S
+        return S.cuda()
 
 
 class BasePolicyReinforce(BasePolicy):
@@ -190,7 +190,7 @@ class BasePolicyReinforce(BasePolicy):
         shared_features = F.relu(self.shared_features(data))
         if(self.is_self_play and self.is_self_play_with_memory):
             shared_features = torch.cat((F.relu(self.shared_features(data)),
-                                     self.summarize_memory().unsqueeze(0).detach()), dim=1)
+                                     self.summarize_memory().unsqueeze(0).detach().cuda()), dim=1)
         action_logits = self.actor(shared_features)
         return F.softmax(action_logits, dim=1)
 
@@ -251,13 +251,13 @@ class BasePolicyReinforceWithBaseline(BasePolicy):
         self.is_self_play = policy_config[IS_SELF_PLAY]
         self.critic = nn.Sequential(
             nn.Linear(self.shared_features_size_output, 1)
-        )
+        ).cuda()
 
     def forward(self, data):
         shared_features = F.relu(self.shared_features(data))
         if(self.is_self_play and self.is_self_play_with_memory):
             shared_features = torch.cat((shared_features,
-                                     self.summarize_memory().unsqueeze(0).detach()), dim=1)
+                                     self.summarize_memory().unsqueeze(0).detach().cuda()), dim=1)
         action_logits = self.actor(shared_features)
         state_values = self.critic(shared_features)
         return F.softmax(action_logits, dim=1), state_values
