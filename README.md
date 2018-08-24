@@ -118,3 +118,7 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 |human_agent.py|重载了基类BaseAgent中get_action方法|意在让用户手动输入一个action达到与用户之间的交互(在训练中用不得到)|
 |random_agent.py|重载了基类BaseAgent中get_action方法|随机选取一个action空间中的action|
 |reinforce_agent.py|重载了基类BaseAgent中的各种方法|主要是调用policy文件夹中的policy以选取action，并且调用policy文件夹中的函数更新policy(重要的功能还要参见policy文件夹)|
+
+
+### 游戏环境
+Light Key: there is a switch and a door in a wall of blocks. The agent should navigate to a goal which may be on the wrong side of a wall of blocks, in which the agent needs move to and toggle the switch to open the door before going to the goal.
