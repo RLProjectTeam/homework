@@ -122,3 +122,10 @@ c) Adam optimizer(with learning rate of 0.001) and policy-gradient algorithm wit
 
 ### 游戏环境
 Light Key: there is a switch and a door in a wall of blocks. The agent should navigate to a goal which may be on the wrong side of a wall of blocks, in which the agent needs move to and toggle the switch to open the door before going to the goal.
+
+Light Key: In this game, there is a switch and a door in a wall of blocks. The agent should
+navigate to a goal which may be on the wrong side of a wall of blocks. If the goal is
+on the same side of the wall as the agent, it should go directly there; otherwise, it needs
+move to and toggle the switch to open the door before going to the goal. There are no
+special penalties in this game, and the game ends when the agent reaches the goal. This
+task combines if-then reasoning with environment manipulation.
