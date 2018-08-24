@@ -94,6 +94,7 @@ NAME = "name"
 NEXT_STATE = "next_state"
 NP_RANDOM_STATE = "np_random_state"
 NUM_ACTIONS = "num_actions"
+NUM_SELFPLAY_EPOCHS = 'num_selfplay_epochs'
 NUM_EPOCHS = "num_epochs"
 NUM_OPTIMIZERS = "num_optimizers"
 OBSERVATION = "observation"

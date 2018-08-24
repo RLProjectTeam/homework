@@ -169,7 +169,7 @@ def run(config):
     episode_counter_selfplay = 0.0
     episode_counter_target = 0.0
 
-    for i_epoch in range(config[MODEL][NUM_EPOCHS]):
+    for i_epoch in range(config[MODEL][NUM_SELFPLAY_EPOCHS]):
 
         alice, bob, optimizers_alice, optimizers_bob, total_rA, total_rB, \
         episode_counter_selfplay = run_selfplay_epoch(selfplay, alice, bob, optimisers_alice, optimisers_bob,
@@ -177,6 +177,20 @@ def run(config):
                                                       total_rA, total_rB, total_episodes=episode_counter_selfplay,
                                                       reward_scale=reward_scale, tMax=max_steps_per_episode_self_play,
                                                       use_memory=use_memory)
+        bob, optimizers_bob, total_target_episodic_rewards, episode_counter_target = run_target_epochs(
+            selfplay_target=selfplay_target,
+            bob=bob, optimisers_bob=optimisers_bob, batch_size=batch_size * target_to_selfplay_ratio,
+            total_episodic_rewards=total_target_episodic_rewards, total_episodes=episode_counter_target,
+            max_steps_per_episode=config[MODEL][MAX_STEPS_PER_EPISODE]
+        )
+        if (i_epoch % config[MODEL][PERSIST_PER_EPOCH] == 0):
+            timestamp = str(int(time() * 10000))
+            alice.save_model(epochs=i_epoch, optimisers=optimisers_alice, name=ALICE, timestamp=timestamp)
+            bob.save_model(epochs=i_epoch, optimisers=optimisers_bob, name=BOB, timestamp=timestamp)
+
+
+
+    for i_epoch in range(config[MODEL][NUM_EPOCHS]):
         bob, optimizers_bob, total_target_episodic_rewards, episode_counter_target = run_target_epochs(
             selfplay_target=selfplay_target,
             bob=bob, optimisers_bob=optimisers_bob, batch_size=batch_size * target_to_selfplay_ratio,

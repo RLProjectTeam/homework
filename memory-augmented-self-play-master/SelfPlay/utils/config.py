@@ -52,7 +52,7 @@ def get_config(use_cmd_config = True):
         config[GENERAL][key] = str(config[GENERAL][SEED])
 
     # Model Params
-    for key in [NUM_EPOCHS, BATCH_SIZE, PERSIST_PER_EPOCH, EARLY_STOPPING_PATIENCE,
+    for key in [NUM_SELFPLAY_EPOCHS, NUM_EPOCHS, BATCH_SIZE, PERSIST_PER_EPOCH, EARLY_STOPPING_PATIENCE,
                 NUM_OPTIMIZERS, LOAD_TIMESTAMP, MAX_STEPS_PER_EPISODE, MAX_STEPS_PER_EPISODE_SELFPLAY,
                 TARGET_TO_SELFPLAY_RATIO, EPISODE_MEMORY_SIZE]:
         config[MODEL][key] = int(config[MODEL][key])
