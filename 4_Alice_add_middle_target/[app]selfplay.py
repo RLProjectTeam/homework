@@ -75,15 +75,16 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
     while True:
         tA += 1
         observation = selfplay.alice_observe(alice_middle_loc)   #### edit [env/selfplay.py] alice observe the environment (st,s0)
+        print('===================alice observation================', observation)
+        
         
         ############## add: set middle state in alice [add switch, remove old switch]####################
         if set_middle==False:
             set_middle, _ = determine_this_state_as_middle(observation)
             if set_middle:
                 alice_middle_loc = find_agent_loc(selfplay)  #(i,j) the middle state loc
-                alice_middle_state =     
+                alice_middle_state =  selfplay.alice_observe(alice_middle_loc)[0].state 
         #######################################
-    
     
         action = alice.get_action(observation)
         observation = selfplay.act(action)
@@ -93,18 +94,16 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
         
     write_time_log(time_alice=tA, agent=ALICE, environment=selfplay.name, time=tA)
     
-    
-    
+
     selfplay.bob_start()
     tB = 0
     add_reward = 0
     while True:
-        observation = selfplay.bob_observe(改) #######bob observe the environment with new switch if it conclude the input new_switch_loc ## output s_t, s* (alice end) 
+        observation = selfplay.bob_observe(alice_middle_loc) #######bob observe the environment with new switch if it conclude the input new_switch_loc ## output s_t, s* (alice end) 
         
         ###################################################
-        print('s_t',observation[0].state,   'middle_alice', alice_middle_state.state )  ##############
         if (observation[0].state == alice_middle_state.state).all():
-            print('##########################s_t== middle##################################')
+            print('##########################bob s_t== middle state##################################')
             add_reward  = 5
         ####################################################3
         
