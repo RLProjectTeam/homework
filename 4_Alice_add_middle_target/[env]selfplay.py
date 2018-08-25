@@ -83,7 +83,7 @@ class SelfPlay(Environment):
         self.agent_id = 0
         self.is_over = False
         ########## remove old switch ###################
-        self.alice_observations.start =   deepcopy( replace_switch(self.environment, alice_middle_loc=None)) 
+        self.alice_observations.start =   deepcopy( replace_switch(self.environment, None)) 
         if (self.task == COPY):
             self.alice_start_environment = self.environment.create_copy()
 
