@@ -14,7 +14,10 @@ default_input_size = 10 * 10 * 78   #####(78+1)
 
 # 修改3：environment/mazebase_wrapper.py
 增加函数get_state_at_goal(self)：''' get the state at goal, then put it as s* in target task, instead of using [0,0....0]'''
-【增加修改：去掉goal】
+【增加修改：去掉door
+具体修改如下：开门后的observation中'door'不会消失，不过
+ ['Switch', 'state0']  ----> ['Switch', 'state1']  #open door
+】
   
 # 修改4： environment/selfplay_target.py
 在target task中，bob输入的是(s_t, 0)，这里改为输入(s_t, goal_state)  
