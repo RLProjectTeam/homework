@@ -21,10 +21,17 @@ default_input_size = 10 * 10 * 78   #####(78+1)
  def reset(self):
         ####################################################
         ''' edit: make use of selfplay trainning. Here not input [0,0,...0] as the second element, but state_at_goal(just like s* in selfplay)'''
+        
         self.observation = self.environment.reset()
+        
         self.bob_observations.goal = self.environment.get_state_at_goal()  #############
+        
         print(self.bob_observations.goal,'bob goal')
+        
         self.bob_observations.goal.state = self.environment.get_state_at_goal().state ############
+        
         self.is_over = False
+        
         self.agent_id = 1
+        
         return self.observe()
