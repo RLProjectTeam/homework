@@ -37,7 +37,7 @@ def lst_sub(lst1, lst2):
     return out_lst
 
 
-def replace_switch(SelfplayEpisode_selfplay_env, new_switch_loc=None):
+def replace_switch(SelfplayEpisode_selfplay_env, new_switch_loc=None, is_over = False):  ## debug: add is_over
     ''' 
     SelfplayEpisode_selfplay_env表示SelfplayEpisode_selfplay.environment
     new_switch_loc=(i,j) the location of middle_state 
@@ -65,10 +65,11 @@ def replace_switch(SelfplayEpisode_selfplay_env, new_switch_loc=None):
     # map new_obs_str_lst to one-hot vector
     featurizers.grid_one_hot(SelfplayEpisode_selfplay_env.game,  new_obs_str_lst)
     obs_vec = np.array(new_obs_str_lst).flatten()
+    print(obs_vec,'obs vec ================')
     return Observation(id = game_observation['id'],
                        reward = game_observation['reward'],
                        state= obs_vec,
-                       is_episode_over = SelfplayEpisode_selfplay_env.game.is_over())
+                       is_episode_over = is_over)
     
     
 if __name__ == '__main__':

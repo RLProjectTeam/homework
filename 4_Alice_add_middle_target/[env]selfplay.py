@@ -61,20 +61,14 @@ class SelfPlay(Environment):
     '''
     
     def alice_observe(self,alice_middle_loc=None):
-        if alice_middle_loc == None:
-            observation = replace_switch(self.environment, alice_middle_loc) # 直接观察环境（移除old switch)
-        else:
-            observation = replace_switch(self.environment, alice_middle_loc)
+        observation = replace_switch(self.environment, alice_middle_loc, self.is_over) ###debug: add self.is_over to show whether this episode is over
         return (observation, self.alice_observations.start)
     
     def bob_observe(self, alice_middle_loc=None):
         if(self.environment.are_states_equal(self.observation.state, self.bob_observations.target.state)):
             self.is_over = True
         
-        if alice_middle_loc == None:
-            observation = replace_switch(self.environment, alice_middle_loc) # observation = self.observe()
-        else:
-            observation = replace_switch(self.environment, alice_middle_loc)
+        observation = replace_switch(self.environment, alice_middle_loc, self.is_over) # observation = self.observe()
         return (observation, self.bob_observations.target)    
    
     
@@ -83,7 +77,7 @@ class SelfPlay(Environment):
         self.agent_id = 0
         self.is_over = False
         ########## remove old switch ###################
-        self.alice_observations.start =   deepcopy( replace_switch(self.environment, None)) 
+        self.alice_observations.start =   deepcopy( replace_switch(self.environment, None, self.is_over)) 
         if (self.task == COPY):
             self.alice_start_environment = self.environment.create_copy()
 
@@ -95,14 +89,14 @@ class SelfPlay(Environment):
             self.alice_end_environment = self.environment.create_copy()
 
 
-    def bob_start(self):
+    def bob_start(self,alice_middle_loc):
         self.agent_id = 1
         self.is_over = False
         if (self.task == COPY):
             self.environment.load_copy(self.alice_start_environment)
             self.bob_observations.target = deepcopy(self.alice_observations.end)
-            self.bob_observations.start = deepcopy(self.bob_observe()[0])
-            
+            self.bob_observations.start = deepcopy(self.bob_observe(alice_middle_loc)[0])
+            print('=======debug bob observation start===========', deepcopy(self.bob_observe(alice_middle_loc)[0]) )
             if (not self.environment.are_states_equal(self.bob_observations.start.state,
                                                       self.alice_observations.start.state)):
                 print("Error in initialising Bob's environment")
@@ -121,7 +115,22 @@ class SelfPlay(Environment):
         self.agent_id = -1
         self.is_over = True
         self.bob_observations.end_observation =  deepcopy(self.bob_observe()[0])  #deepcopy(self.observe())
-     # =============================================================================
+    
+    def act(self, action, alice_middle_loc = None): ###### also modify this function in selfplay task
+        prev_agent_id = deepcopy(self.agent_id)  ########## debug: add deepcopy here
+        if (action == self.stop_action):
+            self.agent_stop()
+        elif (action != self.stop_action):
+            self.observation = deepcopy(replace_switch(self.environment, alice_middle_loc, self.is_over))          ########## self.environment.act(action=action)
+            
+        if (prev_agent_id == 0):
+            return self.alice_observe()
+        elif (prev_agent_id == 1):
+            return self.bob_observe()
+        else:
+            print('self observe in line 137')
+            return self.observe()
+    # =============================================================================
 
 
 
@@ -143,19 +152,7 @@ class SelfPlay(Environment):
     def is_over(self):
         return self.is_over
 
-    def act(self, action):
-        prev_agent_id = self.agent_id
-        if (action == self.stop_action):
-            self.agent_stop()
-        elif (action != self.stop_action):
-            self.observation = self.environment.act(action=action)
-        if (prev_agent_id == 0):
-            return self.alice_observe()
-        elif (prev_agent_id == 1):
-            return self.bob_observe()
-        else:
-            return self.observe()
-
+    
     def all_possible_actions(self, agent=ALICE):
         if (agent == ALICE):
             return self.actions + [self.stop_action]

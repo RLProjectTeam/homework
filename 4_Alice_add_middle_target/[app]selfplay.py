@@ -82,27 +82,28 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
         if set_middle==False:
             set_middle, _ = determine_this_state_as_middle(observation)
             if set_middle:
-                alice_middle_loc = find_agent_loc(selfplay)  #(i,j) the middle state loc
+                alice_middle_loc = find_agent_loc(selfplay.environment)  #(i,j) the middle state loc
                 alice_middle_state =  selfplay.alice_observe(alice_middle_loc)[0].state 
         #######################################
     
         action = alice.get_action(observation)
-        observation = selfplay.act(action)
-        if (tA >= tMax or observation[0].is_episode_over):
+        observation = selfplay.act(action, alice_middle_loc) #Observation or ObservationTuple
+        if (tA >= tMax or observation[0].is_episode_over): 
             selfplay.alice_stop()
             break
+        
         
     write_time_log(time_alice=tA, agent=ALICE, environment=selfplay.name, time=tA)
     
 
-    selfplay.bob_start()
+    selfplay.bob_start(alice_middle_loc)
     tB = 0
     add_reward = 0
     while True:
         observation = selfplay.bob_observe(alice_middle_loc) #######bob observe the environment with new switch if it conclude the input new_switch_loc ## output s_t, s* (alice end) 
-        
+        print('============= bob observation ============', observation)
         ###################################################
-        if (observation[0].state == alice_middle_state.state).all():
+        if set_middle and (observation[0].state == alice_middle_state.state).all():
             print('##########################bob s_t== middle state##################################')
             add_reward  = 5
         ####################################################3
@@ -118,7 +119,8 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
             break
         tB += 1
         action = bob.get_action(observation)
-        selfplay.act(action)
+        selfplay.act(action, alice_middle_loc) #############
+        
     write_time_log(time_bob=tB, agent=BOB, environment=selfplay.name, time=tA)
     # write_position_log(bob_end_position=list(observation[0].state.astype(np.float64))) 
     # print('bob end state shape',observation[0].state.shape, observation[0].state)  ######
