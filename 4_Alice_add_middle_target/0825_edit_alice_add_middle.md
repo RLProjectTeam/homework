@@ -16,6 +16,7 @@ default_input_size = 10 * 10 * 78   #####(78+1)
 
 
 # 修改1：app/selfplay.py中run_selfplay_episode函数
+部分改动部分见下方（原代码中用##########标注出了改动部分############）
   ############## add part : set middle state in alice ##################
     def determine_this_state_as_middle(observation):
         import random
