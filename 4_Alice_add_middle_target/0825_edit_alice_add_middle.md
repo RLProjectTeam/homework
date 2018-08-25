@@ -19,7 +19,8 @@ self.actions = ['up', 'down', 'right', 'left', 'toggle_switch']   ########## edi
 default_input_size = 10 * 10 * 78   #####(78+1)
 
 
-# 修改1：app/selfplay.py中run_selfplay_episode函数【让alice在走的过程中扔钥匙，如果bob在前往goal的途中捡到了钥匙，会有奖励】
+# 修改1：app/selfplay.py中run_selfplay_episode函数
+【让alice在走的过程中扔钥匙，如果bob在前往goal的途中捡到了钥匙，会有奖励】
 
 注意新增改动：alice的end_state（作为bob的target_state应该要做修改，即应该把环境中本来的switch删去，然后把这个新增的middle_state作为['Switch', 'state0']）
 
@@ -35,4 +36,7 @@ default_input_size = 10 * 10 * 78   #####(78+1)
         middle_state = observation[0]
         return set_middle, middle_state
     ######################################################################
+    
+# 修改2：env/selfplay.py
+在selfplay阶段，alice设置了新switch后，环境应该发生改变，至少应该让bob_observe()看到的是新环境
     
