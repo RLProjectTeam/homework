@@ -13,3 +13,6 @@ game_observation[OBSERVATION] =obs   # ver2
 
 # 修改0-1：policy/mazebase_policy.py
 default_input_size = 10 * 10 * 78   #####(78+1)
+
+
+# 修改1：app/selfplay.py
