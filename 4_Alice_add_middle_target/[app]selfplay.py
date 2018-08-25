@@ -75,8 +75,6 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
     while True:
         tA += 1
         observation = selfplay.alice_observe(alice_middle_loc)   #### edit [env/selfplay.py] alice observe the environment (st,s0)
-        print('===================alice observation================', observation,alice_middle_loc)
-        
         
         ############## add: set middle state in alice [add switch, remove old switch]####################
         if set_middle==False:
@@ -84,7 +82,7 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
             if set_middle:
                 alice_middle_loc = find_agent_loc(selfplay.environment)  #(i,j) the middle state loc
                 alice_middle_observation =  selfplay.alice_observe(alice_middle_loc)[0]
-        #######################################
+        #######################################################################
     
         action = alice.get_action(observation)
         observation = selfplay.act(action, alice_middle_loc) #Observation or ObservationTuple
@@ -101,10 +99,8 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
     add_reward = 0
     while True:
         observation = selfplay.bob_observe(alice_middle_loc) #######bob observe the environment with new switch if it conclude the input new_switch_loc ## output s_t, s* (alice end) 
-        print('============= bob observation ============', observation,alice_middle_loc)
         ###################################################
         if set_middle and (observation[0].state == alice_middle_observation.state).all():
-            print('##########################bob s_t== middle state##################################')
             add_reward  = 5
         ####################################################3
         
@@ -122,12 +118,10 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
         selfplay.act(action, alice_middle_loc) #############
         
     write_time_log(time_bob=tB, agent=BOB, environment=selfplay.name, time=tA)
-    # write_position_log(bob_end_position=list(observation[0].state.astype(np.float64))) 
-    # print('bob end state shape',observation[0].state.shape, observation[0].state)  ######
     
     rA = reward_scale * max(0, tB - tA)
     rB = -reward_scale * (tB - add_reward)  ###### edit  ###################
-    alice_reward_observation = selfplay.alice_observations.end ######### this part is not introduced in SelfPlay Paper, but can not removed, for updating policy############
+    alice_reward_observation = selfplay.alice_observations.end  ######### this part is not introduced in SelfPlay Paper, but can not removed, for updating policy############
     alice_reward_observation.reward = rA
     alice.get_action(observation=(alice_reward_observation, alice_reward_observation))
 

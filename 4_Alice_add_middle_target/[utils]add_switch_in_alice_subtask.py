@@ -65,7 +65,6 @@ def replace_switch(SelfplayEpisode_selfplay_env, new_switch_loc=None, is_over = 
     # map new_obs_str_lst to one-hot vector
     featurizers.grid_one_hot(SelfplayEpisode_selfplay_env.game,  new_obs_str_lst)
     obs_vec = np.array(new_obs_str_lst).flatten()
-    print(len(obs_vec),'length of obs vec ================')
     return Observation(id = game_observation['id'],
                        reward = game_observation['reward'],
                        state= obs_vec,
