@@ -58,7 +58,7 @@ class MazebaseWrapper(Environment):
         info = np.array(info).flatten()  #  [10,10] ########## before (obs)?????   ###########
         
         
-        game_observation[OBSERVATION] = np.concatenate((obs, info), 0)
+        game_observation[OBSERVATION] = obs      #np.concatenate((obs, info), 0) # ver1
         is_episode_over = self.game.is_over()
         return Observation(id=game_observation[ID],
                            reward=game_observation[REWARD],
