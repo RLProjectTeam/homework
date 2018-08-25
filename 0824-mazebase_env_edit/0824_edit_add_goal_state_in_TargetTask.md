@@ -40,3 +40,8 @@ default_input_size = 10 * 10 * 78   #####(78+1)
         self.agent_id = 1
         
         return self.observe()
+ 
+ 
+ # 补充修改：动作空间减小(mazebase_wrapper.py
+ self.actions = ['up', 'down', 'right', 'left', 'toggle_switch']   ########## edit ###############
+ 
