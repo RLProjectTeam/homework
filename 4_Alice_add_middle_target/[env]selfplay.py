@@ -96,10 +96,13 @@ class SelfPlay(Environment):
             self.environment.load_copy(self.alice_start_environment)
             self.bob_observations.target = deepcopy(self.alice_observations.end)
             self.bob_observations.start = deepcopy(self.bob_observe(alice_middle_loc)[0])
+            ########  if new switch is added, alice original start is not the same as bob's ########
+            self.alice_observations.start =   deepcopy( replace_switch(self.environment, alice_middle_loc, False)) 
             print('=======debug bob observation start===========', deepcopy(self.bob_observe(alice_middle_loc)[0]) )
             if (not self.environment.are_states_equal(self.bob_observations.start.state,
                                                       self.alice_observations.start.state)):
                 print("Error in initialising Bob's environment")
+                
         elif(self.task == UNDO):
             self.environment.load_copy(self.alice_end_environment)
             self.bob_observations.target = deepcopy(self.alice_observations.start)

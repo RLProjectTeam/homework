@@ -75,7 +75,7 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
     while True:
         tA += 1
         observation = selfplay.alice_observe(alice_middle_loc)   #### edit [env/selfplay.py] alice observe the environment (st,s0)
-        print('===================alice observation================', observation)
+        print('===================alice observation================', observation,alice_middle_loc)
         
         
         ############## add: set middle state in alice [add switch, remove old switch]####################
@@ -83,7 +83,7 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
             set_middle, _ = determine_this_state_as_middle(observation)
             if set_middle:
                 alice_middle_loc = find_agent_loc(selfplay.environment)  #(i,j) the middle state loc
-                alice_middle_state =  selfplay.alice_observe(alice_middle_loc)[0].state 
+                alice_middle_observation =  selfplay.alice_observe(alice_middle_loc)[0]
         #######################################
     
         action = alice.get_action(observation)
@@ -101,9 +101,9 @@ def run_selfplay_episode(selfplay, alice, bob, optimisers_alice, optimisers_bob,
     add_reward = 0
     while True:
         observation = selfplay.bob_observe(alice_middle_loc) #######bob observe the environment with new switch if it conclude the input new_switch_loc ## output s_t, s* (alice end) 
-        print('============= bob observation ============', observation)
+        print('============= bob observation ============', observation,alice_middle_loc)
         ###################################################
-        if set_middle and (observation[0].state == alice_middle_state.state).all():
+        if set_middle and (observation[0].state == alice_middle_observation.state).all():
             print('##########################bob s_t== middle state##################################')
             add_reward  = 5
         ####################################################3
