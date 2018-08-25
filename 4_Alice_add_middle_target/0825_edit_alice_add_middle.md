@@ -24,18 +24,8 @@ default_input_size = 10 * 10 * 78   #####(78+1)
 
 注意新增改动：alice的end_state（作为bob的target_state应该要做修改，即应该把环境中本来的switch删去，然后把这个新增的middle_state作为['Switch', 'state0']）
 
-部分改动部分见下方（原代码中用##########标注出了改动部分############）
-  ############## add part : set middle state in alice ##################
-    def determine_this_state_as_middle(observation):
-        import random
-        set_middle = False
-        p  = random.random()
-        x =  random.random()
-        if x>=p:
-            set_middle = True
-        middle_state = observation[0]
-        return set_middle, middle_state
-    ######################################################################
+部分改动部分见##########标注出了改动部分############
+ 
     
 # 修改2-1：增加utils/add_switch_in_alice_subtask.py
 
