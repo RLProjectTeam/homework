@@ -37,6 +37,9 @@ default_input_size = 10 * 10 * 78   #####(78+1)
         return set_middle, middle_state
     ######################################################################
     
-# 修改2：env/selfplay.py
+# 修改2-1：增加utils/add_switch_in_alice_subtask.py
+
+
+# 修改2-2：env/selfplay.py
 在selfplay阶段，alice设置了新switch后，环境应该发生改变，至少应该让bob_observe()看到的是新环境
     
