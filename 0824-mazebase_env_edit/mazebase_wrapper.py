@@ -11,6 +11,7 @@ from mazebase.games import featurizers
 from environment.env import Environment
 from environment.observation import Observation
 from utils.constant import *
+from utils.place_agent_at_goal import place_agent_at_goal
 
 
 class MazebaseWrapper(Environment):
@@ -66,37 +67,6 @@ class MazebaseWrapper(Environment):
     
     def get_state_at_goal(self):
         ''' get the state at goal, then put it as s* in target task, instead of using [0,0....0]'''
-        def lst_sub(lst1, lst2):
-            ''' lst1 - lst2'''
-            lst_out = deepcopy(lst1)
-            for e in lst2:
-                lst_out.remove(e)
-            return lst_out
-        
-        def place_agent_at_goal(obs_str_lst):
-            new_obs_str_lst = deepcopy(obs_str_lst)
-            agent_ele = ['SingleTileMovable', 'Toggling', 'Agent']
-            Goal_ele = ['Goal', 'goal_id0']
-            
-            set_intersect = lambda set1,set2: set1&set2 
-            lst_add = lambda lst1,lst2 : lst1+lst2
-            
-            
-            for i in range(len(obs_str_lst)):
-                col = obs_str_lst[i]  # one col in mazebase
-                for j in range(len(col)):
-                    check_agent_at_grid = set_intersect(set(col[j]), set(agent_ele ) ) # check agent at this grid. If not, return null set
-                    check_this_grid_is_goal = set_intersect( set(col[j]), set(Goal_ele))
-                    if check_agent_at_grid:
-                        #(i,j): col(left to right), row(bottom to top)
-                        new_obs_str_lst[i][j] = lst_sub( obs_str_lst[i][j],  agent_ele)
-                        
-                    if check_this_grid_is_goal:
-                        new_obs_str_lst[i][j] = lst_add( obs_str_lst[i][j], agent_ele)
-            return new_obs_str_lst
-    
-        
-        
         
         game_observation = self.game.observe()
         obs_now, info = game_observation[OBSERVATION]
@@ -109,7 +79,7 @@ class MazebaseWrapper(Environment):
         info = np.array(info).flatten()  #  [10,10] ########## before (obs)?????   ###########
         
         
-        obs_at_goal_vector = np.concatenate((obs_at_goal, info), 0)
+        obs_at_goal_vector = obs_at_goal # np.concatenate((obs_at_goal, info), 0)  #ver1
         return Observation(id=game_observation[ID],
                            reward = 0,
                            state=obs_at_goal_vector,
