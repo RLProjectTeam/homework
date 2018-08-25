@@ -41,5 +41,13 @@ default_input_size = 10 * 10 * 78   #####(78+1)
 
 
 # 修改2-2：env/selfplay.py
-在selfplay阶段，alice设置了新switch后，环境应该发生改变，至少应该让bob_observe()看到的是新环境
+
+如果alice设置了新的switch位置，让bob能看加switch后新环境；
+
+alice在未设置新switch前看到的环境是移除了old_switch的环境， 
+
+alice设置了middle_state位置后的，看见的环境是 原环境中的old_switch替换为new_switch
+
+注意，这里只考虑task=copy，即bob的target是alice的end(保持了环境的一致性)
+
     
