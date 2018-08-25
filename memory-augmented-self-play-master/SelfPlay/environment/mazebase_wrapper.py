@@ -44,7 +44,7 @@ class MazebaseWrapper(Environment):
         except mazebase.utils.mazeutils.MazeException as e:
             print(e)
         self.game = game
-        self.actions = ['up', 'down', 'right', 'left', 'toggle_switch']
+        self.actions = ['up', 'down', 'right', 'left', 'toggle_switch']   ########## edit ###############
 
     def observe(self):
         game_observation = self.game.observe()
